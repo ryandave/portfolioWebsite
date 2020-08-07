@@ -1,0 +1,29 @@
+name: test
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.7.0"
+
+      - name: install
+        run: npm install
+
+      - name: build
+        run: npm run build
+
+      - name: unit test
+        run: npm run test:unit
+
+      - name: end to end test
+        run: npm run test:e2e:ci
