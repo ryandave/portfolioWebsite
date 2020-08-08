@@ -1,7 +1,7 @@
 name: deploy
 
 on:
-  pull_request:
+  push:
     branches:
       - master
 
@@ -24,7 +24,7 @@ jobs:
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
-        env:
+        with:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          PUBLISH_BRANCH: master
+          PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./public
